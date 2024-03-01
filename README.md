@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Trello Clone
 
-## Getting Started
+Questo è un clone dell'applicazione Trello realizzato utilizzando Next.js 14, Tailwind CSS, Shadn/ui, Server Actions, Prisma, Stripe e MySQL, con il supporto per l'autenticazione e la gestione degli utenti tramite Clerk.
 
-First, run the development server:
+## Panoramica del Progetto
 
+Questo progetto è un'applicazione web che replica le funzionalità di Trello, consentendo agli utenti di creare, gestire e condividere board contenenti liste e card organizzate. L'autenticazione e la gestione degli utenti sono gestite tramite Clerk, una piattaforma di gestione degli utenti.
+
+## Tecnologie Principali
+
+- **Next.js 14**: Framework React per il rendering lato client e lato server delle applicazioni web.
+- **Tailwind CSS**: Framework CSS utilizzato per la creazione di interfacce utente moderne e responsive.
+- **Shadn/ui**: Libreria di componenti React progettata per facilitare la creazione di interfacce utente accessibili.
+- **Server Actions**: Libreria per la gestione delle azioni del server nelle applicazioni Next.js.
+- **Prisma**: ORM (Object-Relational Mapping) per Node.js e TypeScript che semplifica l'interazione con il database.
+- **Stripe**: Piattaforma di pagamento online utilizzata per l'elaborazione dei pagamenti.
+- **MySQL**: Sistema di gestione del database relazionale.
+- **Clerk**: Piattaforma di gestione degli utenti per l'autenticazione e l'autorizzazione.
+
+## Requisiti di Sistema
+
+- Node.js 14 o versione successiva
+- MySQL
+
+## Installazione
+
+1. Clonare il repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/vpinti/trello-clone.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Navigare nella directory del progetto:
+```bash
+cd trello-clone
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Installare le dipendenze:
+```bash
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+4. Creare un file `.env` nella radice del progetto e configurare le variabili d'ambiente necessarie:
 
-## Learn More
+```bash
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
 
-To learn more about Next.js, take a look at the following resources:
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+5. Eseguire le migrazioni del database con Prisma:
+```bash
+npx prisma migrate dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+6. Avviare l'applicazione:
+```bash
+npm run dev
+```
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Contribuire
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Le pull requests sono benvenute. Per modifiche importanti, ti preghiamo di aprire prima un'issue per discutere di cosa vorresti cambiare.
+
+## Licenza
+
+Questo progetto è distribuito con la licenza MIT. Per ulteriori informazioni, vedere il file `LICENSE`.
