@@ -19,7 +19,7 @@ interface FormSubmitProps {
         | "primary";
 }
 
-const FormSubmit: React.FC<FormSubmitProps> = ({
+export const FormSubmit: React.FC<FormSubmitProps> = ({
     children,
     disabled,
     className,
@@ -40,4 +40,3 @@ const FormSubmit: React.FC<FormSubmitProps> = ({
     );
 };
 
-export default FormSubmit;
