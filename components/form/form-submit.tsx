@@ -23,7 +23,7 @@ export const FormSubmit: React.FC<FormSubmitProps> = ({
     children,
     disabled,
     className,
-    variant,
+    variant = "primary",
 }) => {
     const { pending } = useFormStatus();
 
