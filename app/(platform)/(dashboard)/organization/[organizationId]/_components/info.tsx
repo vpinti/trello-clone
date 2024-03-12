@@ -6,11 +6,11 @@ import { useOrganization } from "@clerk/nextjs";
 
 import { Skeleton } from "@/components/ui/skeleton";
 
-const Info = () => {
+export const Info = () => {
     const { organization, isLoaded } = useOrganization();
 
     if (!isLoaded) {
-        return <Info.Skeleton />
+        return <Info.Skeleton />;
     }
 
     return (
@@ -50,5 +50,3 @@ Info.Skeleton = function SkeletonInfo() {
         </div>
     );
 };
-
-export default Info;
