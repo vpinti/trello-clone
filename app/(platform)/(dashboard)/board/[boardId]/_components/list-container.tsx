@@ -1,14 +1,16 @@
 "use client";
 
+import { toast } from "sonner";
 import { useEffect, useState } from "react";
 import { DragDropContext, Droppable } from "@hello-pangea/dnd";
 
+import { updateListOrder } from "@/actions/update-list-order";
+import { updateCardOrder } from "@/actions/update-card-order";
+import { useAction } from "@/hooks/use-action";
 import { ListWithCards } from "@/types";
 
 import { ListForm } from "./list-form";
 import { ListItem } from "./list-item";
-import { set } from "lodash";
-
 interface ListContainerProps {
     data: ListWithCards[];
     boardId: string;
@@ -28,6 +30,23 @@ export const ListContainer: React.FC<ListContainerProps> = ({
 }) => {
     const [orderedData, setOrderedData] = useState(data);
 
+    const { execute: executeUpdateListOrder } = useAction(updateListOrder, {
+        onSuccess: () => {
+            toast.success("List reordered.");
+        },
+        onError: error => {
+            toast.error(error);
+        },
+    });
+
+    const { execute: executeUpdateCardOrder } = useAction(updateCardOrder, {
+        onSuccess: () => {
+            toast.success("Card reordered.");
+        },
+        onError: error => {
+            toast.error(error);
+        },
+    });
     useEffect(() => {
         setOrderedData(data);
     }, [data]);
@@ -56,6 +75,7 @@ export const ListContainer: React.FC<ListContainerProps> = ({
             ).map((item, index) => ({ ...item, order: index }));
 
             setOrderedData(items);
+            executeUpdateListOrder({ items, boardId });
         }
 
         // User moves a card
@@ -96,6 +116,7 @@ export const ListContainer: React.FC<ListContainerProps> = ({
                 sourceList.cards = reorderedCards;
 
                 setOrderedData(newOrderedData);
+                executeUpdateCardOrder({ boardId, items: reorderedCards });
             }
             // User moves the card to another list
             else {
@@ -118,6 +139,7 @@ export const ListContainer: React.FC<ListContainerProps> = ({
                 });
 
                 setOrderedData(newOrderedData);
+                executeUpdateCardOrder({ boardId, items: destList.cards });
             }
         }
     };
